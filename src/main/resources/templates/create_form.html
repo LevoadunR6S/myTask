@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Page</title>
 </head>
 <body>
 <form action="/myTask/my/create " method="post">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    <label for="description">Task Header</label>
+    <label for="header">Task Header</label>
     <input type="text" id="header" name="header" required>
     <label for="description">Task Description:</label>
     <input type="text" id="description" name="description" required>

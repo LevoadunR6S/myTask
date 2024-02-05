@@ -30,8 +30,8 @@ public class UserService {
     }
 
     public void updatePassword(User user, String newPassword) {
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String encodedPassword = passwordEncoder.encode(newPassword);
+       /* BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);*/
         user.setPassword(newPassword);
 
         user.setResetPasswordToken(null);

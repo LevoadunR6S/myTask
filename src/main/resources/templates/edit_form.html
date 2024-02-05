@@ -7,17 +7,11 @@
 <body>
 
 <form th:action="@{/myTask/my/edit/{taskId}(taskId=${task.getId()})}" method="post">
-    <!-- Додайте приховане поле для ідентифікатора завдання -->
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-
     <label for="header">Task Header:</label>
     <input type="text" id="header" name="header" th:field="*{task.header}" required>
-
     <label for="description">Task Description:</label>
     <input type="text" id="description" name="description" th:field="*{task.description}" required>
-
-    <!-- Додайте інші поля, якщо потрібно -->
-
     <button type="submit">Edit Task</button>
 </form>
 

@@ -29,7 +29,7 @@ public class TaskController {
     private UserRepository userRepository;
 
     @GetMapping()
-    public String home(Model model) {
+    public String home() {
         return "index";
     }
 
@@ -42,12 +42,12 @@ public class TaskController {
 
         String username;
         if (oAuth2User != null) {
-            // Логіка для обробки входу через OAuth2
+            // Вхід через OAuth2
             username = oAuth2User.getAttribute("name");
             model.addAttribute("username", username);
         } else {
             username = userDetails.getUsername();
-            // Логіка для обробки входу за допомогою юзернейму та паролю
+            // Вхід за допомогою юзернейму та паролю
             model.addAttribute("username", username);
         }
 
@@ -62,24 +62,19 @@ public class TaskController {
     }
 
     @GetMapping("/my/create")
-    public String createTaskForm(Model model) {
+    public String createTaskForm() {
         return "create_form";
     }
 
     @PostMapping("/my/create")
-    public String createTask(Model model,
-                             @RequestParam String header,
+    public String createTask(@RequestParam String header,
                              @RequestParam String description,
                              Principal principal) {
         String username = principal.getName();
 
-        // Створити новий таск та зберегти його для користувача
         User user = userRepository.findByUsername(username);
         Task task = new Task(header, description, user);
 
-        // Знайти користувача за його ім'ям
-
-        // Додати таск до списку тасків користувача
         taskService.addTaskToUser(task);
 
         return "redirect:/myTask/my";

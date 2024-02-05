@@ -2,7 +2,6 @@ package com.pet.taskmanager.models;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Data

@@ -1,8 +1,6 @@
 package com.pet.taskmanager.maincontrollers;
 
-import com.pet.taskmanager.models.ROLE;
 import com.pet.taskmanager.models.User;
-import com.pet.taskmanager.repository.UserRepository;
 import com.pet.taskmanager.services.AuthService;
 import com.pet.taskmanager.services.MailService;
 import com.pet.taskmanager.services.UserService;
@@ -10,23 +8,13 @@ import com.pet.taskmanager.services.Utility;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Collections;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-// інші імпорти ...
 
 @Controller
 public class AuthController {
@@ -95,7 +83,7 @@ public class AuthController {
 
 
     @GetMapping("/reset_password")
-    public String PasswordForm(@Param(value = "token") String token, Model model) {
+    public String passwordForm(@Param(value = "token") String token, Model model) {
         User user = userService.getByResetPasswordToken(token);
         model.addAttribute("token", token);
 
@@ -119,8 +107,6 @@ public class AuthController {
         }
 
         User user = userService.getByResetPasswordToken(token);
-
-//        model.addAttribute("title", "Reset your password");
 
         if (user == null) {
             model.addAttribute("message", "Invalid Token");

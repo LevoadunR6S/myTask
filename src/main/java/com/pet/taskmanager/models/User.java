@@ -1,9 +1,7 @@
 package com.pet.taskmanager.models;
 
 import lombok.Data;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -47,14 +45,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-    }
-
-    public void addTask(Task task) {
-        if (tasks == null) {
-            tasks = new ArrayList<>();
-        }
-        tasks.add(task);
-        task.setUser(this);
     }
 }
 
